@@ -91,7 +91,6 @@ class Login extends React.Component {
         <>
           <div className="wrapper">
               <Signup />
-              <Footer />
             
           </div>
         
