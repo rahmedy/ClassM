@@ -9,7 +9,7 @@ import Footer from "components/Footer/Footer.js";
 // import Signup from 'components/Signup/Signup.js'
 
 // import routes from "routes.js";
-import Signup from "components/Signup/Signup";
+import LoginP from "components/LoginP/LoginP.js";
 
 class Login extends React.Component {
     // constructor(props) {
@@ -90,8 +90,7 @@ class Login extends React.Component {
       return (
         <>
           <div className="wrapper">
-              <Signup />
-              <Footer />
+              <LoginP />
             
           </div>
         
