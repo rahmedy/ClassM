@@ -1,6 +1,7 @@
 import React from "react";
 import 'assets/css/log.css'
 import {  Button,Form, FormGroup, Label, Input, Row,Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class LoginP extends React.Component {
 
@@ -10,7 +11,7 @@ class LoginP extends React.Component {
     <Form className ="login-form">
     
     
-        <h1 className= "wel">Welcome to Class _anager</h1>
+        <h1 className= "wel">Class __anager</h1>
         <span className="m-circle">M</span>
         
           <FormGroup >
@@ -25,10 +26,12 @@ class LoginP extends React.Component {
           </FormGroup>
           <Button color="warning" className= "btn-lg  btn-block">Log In
           </Button>
-
+          < Link to ="/sign">
           <a className= "text-success su" href ="/"> Sign Up</a>
+          </Link>
           <span className="p-2">|</span>
           <a className= "text-success " href='/'>Forgot Password?</a>
+          
       </Form>
           </>  
         )
