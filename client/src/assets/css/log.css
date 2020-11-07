@@ -8,7 +8,7 @@
 }
 .m-circle{
    
-        background: crimson;
+        background: royalblue;
         color: #fff;
         padding: 3px 12px;
         border-radius: 50%;
@@ -21,6 +21,7 @@
 
 .wel{
     margin-top: 150px;
+    margin-left: 2.5px;
     color: snow;
 }
 .title{

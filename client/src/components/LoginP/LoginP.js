@@ -2,7 +2,7 @@ import React from "react";
 import 'assets/css/log.css'
 import {  Button,Form, FormGroup, Label, Input, Row,Col } from 'reactstrap';
 
-class Signup extends React.Component {
+class LoginP extends React.Component {
 
     render(){
         return(
@@ -35,4 +35,4 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup;
+export default LoginP;
