@@ -8,7 +8,7 @@ const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
-
+const Class = require("../../models/Classes");
 // @route POST api/users/register
 // @desc Register user
 // @access Public
@@ -45,6 +45,11 @@ router.post("/register", (req, res) => {
       }
     });
   });
+  router.post("/addclass", (req, res) => {
+    const newClass = new Class({
+        ClassName: req.body.ClassName
+    })
+ })
 
   // @route POST api/users/login
 // @desc Login user and return JWT token
