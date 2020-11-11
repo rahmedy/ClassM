@@ -11,7 +11,7 @@ class Perso extends React.Component {
     };
 
     render() {
-        const { handleChange } = this.props;
+        const { handleChange, firstName, lastName, email, password } = this.props;
 
         return (
             <>
@@ -29,6 +29,7 @@ class Perso extends React.Component {
                             name="firstName"
                             id="exampleName"
                             placeholder="First name"
+                            value={firstName}
                             onChange={handleChange('firstName')} />
                     </FormGroup>
 
@@ -39,6 +40,7 @@ class Perso extends React.Component {
                             name="lastName"
                             id="exampleLname"
                             placeholder="Last name"
+                            value={lastName}
                             onChange={handleChange('lastName')} />
                     </FormGroup>
 
@@ -49,7 +51,18 @@ class Perso extends React.Component {
                             name="email"
                             id="exampleEmail"
                             placeholder="Email"
+                            value={email}
                             onChange={handleChange('email')} />
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="examplePassword"></Label>
+                        <Input type="text"
+                         name="password" 
+                         id="examplePassword"
+                         placeholder="Password"
+                         value={password}
+                         onChange= {handleChange ('password')} />
                     </FormGroup>
 
                     <Button color="warning" className="btn-lg  btn-block" onClick={this.continue}>Next
