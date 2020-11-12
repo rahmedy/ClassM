@@ -30,8 +30,6 @@ const CourseSchema = new Schema({
   // gradedScheme: [{
     
   // }],
-  
-  
   });
 
 module.exports = mongoose.model("Course", CourseSchema);
