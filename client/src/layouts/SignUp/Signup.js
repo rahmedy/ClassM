@@ -1,8 +1,10 @@
 import React from "react";
 import {  Switch ,Redirect} from "react-router-dom";
 
-import SignNav from "components/Navbars/SignNavbar.js"
-import SignP from "components/SignP/SignP.js"
+import SignNav from "components/Navbars/SignNavbar.js";
+// import SignP from "../../components/Signp"
+
+import Main from "components/Main";
 
 class Signup extends React.Component {
     render() {
@@ -10,7 +12,7 @@ class Signup extends React.Component {
           <>
             <div className="wrapper">
                 <SignNav />
-                <SignP />
+                <Main />
               
             </div>
           
