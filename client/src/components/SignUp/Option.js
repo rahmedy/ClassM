@@ -10,6 +10,11 @@ class Option extends React.Component {
         e.preventDefault();
         this.props.nextStep();
     }
+
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
     render() {
 
         return (
@@ -23,6 +28,9 @@ class Option extends React.Component {
                     <Button color="warning" className="btn-lg  btn-block" onClick={this.continue}>Teacher
                     </Button>
                     <Button color="warning" className="btn-lg  btn-block" onClick={this.continue}>Student
+                    </Button>
+
+                    <Button color="warning" className="btn-lg  btn-block" onClick={this.back}>Back
                     </Button>
 
                 </Form>
