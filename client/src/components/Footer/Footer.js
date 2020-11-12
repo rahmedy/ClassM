@@ -46,7 +46,7 @@ class Footer extends React.Component {
               href="https://www.creative-tim.com/?ref=bdr-user-archive-footer"
               target="_blank"
             >
-              Creative Tim
+              lori impsum
             </a>{" "}
             for a better web.
           </div>
