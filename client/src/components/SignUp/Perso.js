@@ -1,6 +1,7 @@
 import React from 'react';
 import 'assets/css/sign.css'
-import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Card, CardTitle,CardSubtitle ,CardBody, CardText, CardLink, Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 
@@ -15,6 +16,21 @@ class Perso extends React.Component {
 
         return (
             <>
+
+
+
+{/* <Card style={{ width: '40rem', height: '30rem' }}>
+  <CardBody>
+    <CardTitle>Card Title</CardTitle>
+    <CardSubtitle className="mb-2 text-muted">Card Subtitle</CardSubtitle>
+    <CardText>
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </CardText>
+    <CardLink href="#">Card Link</CardLink>
+    <CardLink href="#">Another Link</CardLink>
+  </CardBody>
+</Card> */}
                 <Form className="login-form">
 
 

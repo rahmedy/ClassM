@@ -1,7 +1,8 @@
 import React from "react";
-import Perso from 'components/Perso';
-import Option from 'components/Option';
-
+import Perso from 'components/SignUp/Perso';
+import Option from 'components/SignUp/Option';
+import Info from 'components/SignUp/Info';
+// import Teacher from 'components/SignUp/Teacher';
 
 
 
@@ -15,8 +16,10 @@ class Main extends React.Component {
         email: '',
         password: '',
 
+        // Step 2
+        className: '',
         location: '',
-        textbook: '',
+        classSection: '',
         desc: ''
     }
 
@@ -45,6 +48,8 @@ class Main extends React.Component {
         if (step === 1)
             return (
 
+
+              
                 <Perso
                     handleChange={this.handleChange}
                     nextStep={this.nextStep}
@@ -52,6 +57,7 @@ class Main extends React.Component {
                     lastName={lastName}
                     email={email}
                     password={password}
+                    
 
                 />
             );
@@ -61,6 +67,16 @@ class Main extends React.Component {
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
                 />);
+
+                if(step === 3)
+                return(
+                    <Info
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                    prevStep={this.prevStep}
+                     />
+                )
     }
 
 
