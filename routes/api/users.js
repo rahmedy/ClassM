@@ -9,10 +9,6 @@ const validateLoginInput = require("../../validation/login");
 
 const User = require("../../models/User");
 
-// router.route("/:id").get(userControl.findById);
-
-// router.route("/").get(userControl.findAll);
-
 router.get('/', (req, res) => {
   User.find(req.query)
   .then(dbModel => res.json(dbModel))
@@ -24,6 +20,11 @@ router.get('/:id', (req, res)=> {
   .then(dbModel => res.json(dbModel)) 
   .catch(err => res.status(422).json(err));
 })
+
+const Class = require("../../models/Classes");
+// @route POST api/users/register
+// @desc Register user
+// @access Public
 
 router.post("/register", (req, res) => {
     // Form validation
@@ -58,6 +59,11 @@ router.post("/register", (req, res) => {
       }
     });
   });
+  router.post("/addclass", (req, res) => {
+    const newClass = new Class({
+        ClassName: req.body.ClassName
+    })
+ })
 
   // @route POST api/users/login
 // @desc Login user and return JWT token

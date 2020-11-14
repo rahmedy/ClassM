@@ -9,10 +9,11 @@ router.post("/", (req, res) => {
       className: req.body.className,
       courseDescription: req.body.courseDescription,
       location: req.body.location
+
     });
     
    res.end(); 
- });
-
 
 module.exports = router;
+
+
