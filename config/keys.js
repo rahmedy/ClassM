@@ -1,4 +1,4 @@
 module.exports = {
     mongoURI: "mongodb://localhost/classManager",
-    secretOrKey: "secret"
+    secretOrKey: "St03161999"
   };

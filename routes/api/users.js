@@ -3,15 +3,29 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
-// Load input validation
+
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
-// Load User model
+
 const User = require("../../models/User");
+
+router.get('/', (req, res) => {
+  User.find(req.query)
+  .then(dbModel => res.json(dbModel))
+  .catch(err => res.status(422).json(err));
+})
+
+router.get('/:id', (req, res)=> {
+  User.findById(req.params.id)
+  .then(dbModel => res.json(dbModel)) 
+  .catch(err => res.status(422).json(err));
+})
+
 const Class = require("../../models/Classes");
 // @route POST api/users/register
 // @desc Register user
 // @access Public
+
 router.post("/register", (req, res) => {
     // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
