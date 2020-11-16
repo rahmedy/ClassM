@@ -35,7 +35,7 @@ const hist = createBrowserHistory();
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
-      <Route exact path="/student/:id" render={props => <StudentLayout {...props} />} />
+      <Route exact path="/:id" children={<StudentLayout />} />} />
       <Route exact path="/sign" render={props => <SignupLayout {...props} />} />
       <Route exact path="/log" render={props => <LoginLayout {...props} />} />
       <Route exact path="/admin" render={props => <AdminLayout {...props} />} />
