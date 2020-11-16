@@ -25,6 +25,9 @@ import RTLLayout from "layouts/RTL/RTL.js";
 import LoginLayout from "layouts/Login/Login.js"
 import SignupLayout from "layouts/SignUp/Signup.js"
 import StudentLayout from "layouts/Student/student.js"
+import ClassInsert from "layouts/ClassInsert"
+import Navbarr from "./components/Navbars/newNav"
+import ClassList from "layouts/ClassList"
 
 import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
@@ -34,8 +37,11 @@ const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
+    
     <Switch>
-      <Route exact path="/student/:id" render={props => <StudentLayout {...props} />} />
+    {/* <Navbarr /> */}
+    {/* <Route path="/class/list" exact component={ClassList} />
+    <Route path="/class/create" exact component={ClassInsert} /> */}
       <Route exact path="/sign" render={props => <SignupLayout {...props} />} />
       <Route exact path="/log" render={props => <LoginLayout {...props} />} />
       <Route exact path="/admin" render={props => <AdminLayout {...props} />} />
