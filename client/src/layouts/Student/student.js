@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import API from "../../utils/API";
 
 export default function Student() {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({});
 
     // When this component mounts, grab the book with the _id of props.match.params.id
     // e.g. localhost:3000/books/599dcb67f0f16317844583fc

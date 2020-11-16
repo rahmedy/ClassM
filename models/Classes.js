@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // Create Schema
 const CourseSchema = new Schema({
-  
+
     courseName: {
         type: String,
         required: true
@@ -11,10 +11,13 @@ const CourseSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    sections: [{
-        time: String,
-        days: String
-    }],
+    sections: [
+        {
+            sectionNo: Number,
+            time: String,
+            days: String
+        }
+    ],
     location: {
         type: String,
         required: true
@@ -30,4 +33,5 @@ const CourseSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model("Course", CourseSchema);
+const Course = mongoose.model("classes", CourseSchema);
+module.exports = Course
