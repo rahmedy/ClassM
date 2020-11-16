@@ -27,7 +27,7 @@ export default function Student(props) {
     API.getStudents(props.match.params.id)
         .then(res => {
             console.log("-----------")
-            console.log(res)
+            console.log(res.data)
         })
         .catch(err => {
             console.log("-----------")
