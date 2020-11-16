@@ -39,9 +39,7 @@ ReactDOM.render(
   <Router history={hist}>
     
     <Switch>
-    {/* <Navbarr /> */}
-    {/* <Route path="/class/list" exact component={ClassList} />
-    <Route path="/class/create" exact component={ClassInsert} /> */}
+      <Route exact path="/:id" children={<StudentLayout />} />
       <Route exact path="/sign" render={props => <SignupLayout {...props} />} />
       <Route exact path="/log" render={props => <LoginLayout {...props} />} />
       <Route exact path="/admin" render={props => <AdminLayout {...props} />} />
