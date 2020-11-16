@@ -14,6 +14,12 @@ router.post("/", (req, res) => {
 
   res.end();
 });
+
+router.get("/all", (req, res) => {
+  Course.find(req.query)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+})
 module.exports = router;
 
 
