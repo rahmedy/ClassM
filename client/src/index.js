@@ -39,11 +39,13 @@ ReactDOM.render(
   <Router history={hist}>
     
     <Switch>
-      <Route exact path="/:id" children={<StudentLayout />} />
+      
+      <Route exact path="/insert" render={props => <ClassInsert {...props} />} />
       <Route exact path="/sign" render={props => <SignupLayout {...props} />} />
       <Route exact path="/log" render={props => <LoginLayout {...props} />} />
       <Route exact path="/admin" render={props => <AdminLayout {...props} />} />
       <Route exact path="/rtl" render={props => <RTLLayout {...props} />} />
+      <Route exact path="/:id" children={<StudentLayout />} />
     </Switch>
   </Router>,
   document.getElementById("root")
