@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: "mongodb://localhost/classManager",
-    secretOrKey: "St03161999"
+    mongoURI: "mongodb+srv://Project3Db:Yankees@teachercluster.umwxk.mongodb.net/Project3Db?retryWrites=true&w=majority",
+    secretOrKey: "yankees"
   };
