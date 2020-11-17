@@ -5,8 +5,6 @@ const passport = require("passport");
 const routes = require("./routes");
 const app = express();
 
-
-
 // Bodyparser middleware
 app.use(
     bodyParser.urlencoded({
@@ -19,8 +17,8 @@ const db = require("./config/keys").mongoURI;
 // Connect to MongoDB
 mongoose.connect(
         // db,
-        "mongodb://localhost/classManager",
-        { useNewUrlParser: true }
+       "mongodb://localhost/classManager",
+       { useNewUrlParser: true }
     )
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
