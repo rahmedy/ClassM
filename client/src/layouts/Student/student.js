@@ -1,39 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import API from "../../utils/API";
 
-// export default class Student extends React.component{
-//         constructor(props) {
-//       super(props);
-//       this.state = {
+export default function Student() {
+    const [user, setUser] = useState({});
 
-//       };
-//     }
-//     render() {
-//         return (
-//           <>
-//             <div className="wrapper">
-//                 <p>student</p>
-              
-//             </div>
-          
-//           </>
-//         );
-//       }
-// }
-
-export default function Student(props) {
-    console.log(props.match.params.id)
-    // const id = "5fa377860b4faa5e30c00bbc";
-    API.getStudents(props.match.params.id)
-        .then(res => {
-            console.log("-----------")
-            console.log(res)
-        })
-        .catch(err => {
-            console.log("-----------")
-            console.log(err)
-        })
+    // When this component mounts, grab the book with the _id of props.match.params.id
+    // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+    const { id } = useParams()
+    useEffect(() => {
+        API.getStudents(id)
+            .then(res => setUser(res.data))
+            .catch(err => console.log(err));
+    }, [])
+    console.log(user)
     return (
-        <p>STUDENT</p>
+        <div>
+            <p>User is a {user.type}</p>
+            <p>first name: {user.firstName}</p>
+            <p>Last Name: {user.lastName}</p>
+            <p>Email: {user.email}</p>
+            <p>Username: {user.username}</p>
+        </div>
     )
-}
+};
