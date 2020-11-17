@@ -21,6 +21,11 @@ router.get('/:id', (req, res)=> {
   .catch(err => res.status(422).json(err));
 })
 
+router.get("/teacher", (req, res) => {
+  User.find({ type: { $regex: 'teacher' } })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err))
+})
 const Class = require("../../models/Classes");
 // @route POST api/users/register
 // @desc Register user

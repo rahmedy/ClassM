@@ -43,7 +43,7 @@ ReactDOM.render(
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
       <Route path="/rtl" render={props => <RTLLayout {...props} />} />
       <Route exact path="/insert" render={props => <ClassInsert {...props} />} />
-       <Route exact path="/:id" children={<StudentLayout />} />
+      <Route exact path="/:id" children={<StudentLayout />} />
     </Switch>
   </Router>,
   document.getElementById("root")
