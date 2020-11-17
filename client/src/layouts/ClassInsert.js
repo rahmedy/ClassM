@@ -67,11 +67,25 @@ class ClassInsert extends Component {
         this.setState({ courseDescription })
     }
 
+    handleIncludeClass = async () => {
+        const { id, courseName, location, courseDescription } = this.state
+        const classLoad = { courseName, location, courseDescription  }
+
+        await API.insertClass(classLoad).then(res => {
+            window.alert(`Class inserted successfully`)
+            this.setState({
+                courseName: '',
+                location: '',
+                courseDescription: '',
+            })
+        })
+    }
+
     render() {
         const { courseName, location, courseDescription } = this.state
         return (
             <Wrapper>
-                <Title>Create Movie</Title>
+                <Title>Add Class </Title>
 
                 <Label>Name: </Label>
                 <InputText
@@ -80,21 +94,21 @@ class ClassInsert extends Component {
                     onChange={this.handleChangeInputName}
                 />
 
-                <Label>Name: </Label>
+                <Label>Location: </Label>
                 <InputText
                     type="text"
                     value={location}
                     onChange={this.handleChangeInputLocation}
                 />
 
-                <Label>Time: </Label>
+                <Label>Course Des: </Label>
                 <InputText
                     type="text"
                     value={courseDescription}
                     onChange={this.handleChangeInputDescription}
                 />
 
-                {/* <Button onClick={this.handleIncludeMovie}>Add Movie</Button> */}
+                <Button onClick={this.handleIncludeClass}>Add Class</Button>
                 {/* <CancelButton href={'/movies/list'}>Cancel</CancelButton> */}
             </Wrapper>
         )
