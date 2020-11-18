@@ -44,7 +44,6 @@ import {
 
 // core components
 import {
-  
   chartExample2,
   chartExample3,
   chartExample4
@@ -71,25 +70,92 @@ class Dashboard extends React.Component {
               <Card className="card-chart">
                 <CardHeader>
                   <Row>
-                    <Col className="text-center" sm="12">
-                      <h4 className="card-category">Upcoming remdinders on the dahsboard.js</h4>
-                      <CardTitle tag="h2">---This will show upcoming event---</CardTitle>
+                    <Col className="text-center" sm="6">
+                      <h5 className="card-category">Total Shipments</h5>
+                      <CardTitle tag="h2">Upcoming Event</CardTitle>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
                         className="btn-group-toggle float-right"
                         data-toggle="buttons"
                       >
-                        
-                   
-                     
+                        <Button
+                          tag="label"
+                          className={classNames("btn-simple", {
+                            active: this.state.bigChartData === "data1"
+                          })}
+                          color="info"
+                          id="0"
+                          size="sm"
+                          onClick={() => this.setBgChartData("data1")}
+                        >
+                          <input
+                            defaultChecked
+                            className="d-none"
+                            name="options"
+                            type="radio"
+                          />
+                          <span className=
+                            "d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                            Accounts
+</span>
+                          <span className="d-block d-sm-none">
+                            <i className="tim-icons icon-single-02" />
+                          </span>
+                        </Button>
+                        <Button
+                          color="info"
+                          id="1"
+                          size="sm"
+                          tag="label"
+                          className={classNames("btn-simple", {
+                            active: this.state.bigChartData === "data2"
+                          })}
+                          onClick={() => this.setBgChartData("data2")}
+                        >
+                          <input
+                            className="d-none"
+                            name="options"
+                            type="radio"
+                          />
+                          <span className=
+                            "d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                            Purchases
+</span>
+                          <span className="d-block d-sm-none">
+                            <i className="tim-icons icon-gift-2" />
+                          </span>
+                        </Button>
+                        <Button
+                          color="info"
+                          id="2"
+                          size="sm"
+                          tag="label"
+                          className={classNames("btn-simple", {
+                            active: this.state.bigChartData === "data3"
+                          })}
+                          onClick={() => this.setBgChartData("data3")}
+                        >
+                          <input
+                            className="d-none"
+                            name="options"
+                            type="radio"
+                          />
+                          <span className=
+                            "d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                            Sessions
+</span>
+                          <span className="d-block d-sm-none">
+                            <i className="tim-icons icon-tap-02" />
+                          </span>
+                        </Button>
                       </ButtonGroup>
                     </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                 // this will have the news event depdneing on the sylubus calander 
+                   
                   </div>
                 </CardBody>
               </Card>
@@ -102,8 +168,8 @@ class Dashboard extends React.Component {
                   <h5 className="card-category">Total Shipments</h5>
                   <CardTitle tag="h3">
                     <i className="tim-icons icon-bell-55 text-info" />{" "}
-                    763,215
-                  </CardTitle>
+763,215
+</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
@@ -120,9 +186,10 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <h5 className="card-category">Daily Sales</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-delivery-fast text-primary" />{" "}
-                    3,500€
-                  </CardTitle>
+                    <i className="tim-icons icon-delivery-fast text-primary"
+                    />{" "}
+3,500€
+</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
@@ -139,8 +206,9 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <h5 className="card-category">Completed Tasks</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-send text-success" /> 12,100K
-                  </CardTitle>
+                    <i className="tim-icons icon-send text-success" />
+12,100K
+</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
@@ -175,19 +243,19 @@ class Dashboard extends React.Component {
                         onClick={e => e.preventDefault()}
                       >
                         Action
-                      </DropdownItem>
+</DropdownItem>
                       <DropdownItem
                         href="#pablo"
                         onClick={e => e.preventDefault()}
                       >
                         Another action
-                      </DropdownItem>
+</DropdownItem>
                       <DropdownItem
                         href="#pablo"
                         onClick={e => e.preventDefault()}
                       >
                         Something else
-                      </DropdownItem>
+</DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </CardHeader>
@@ -207,10 +275,11 @@ class Dashboard extends React.Component {
                             </FormGroup>
                           </td>
                           <td>
-                            <p className="title">Update the Documentation</p>
+                            <p className="title">Update the Documentation</p
+                            >
                             <p className="text-muted">
                               Dwuamish Head, Seattle, WA 8:47 AM
-                            </p>
+</p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -227,7 +296,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-                            </UncontrolledTooltip>
+</UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -252,7 +321,7 @@ class Dashboard extends React.Component {
                               to protect the personal data and privacy of Europe
                               citizens for transactions that occur within EU
                               member states.
-                            </p>
+</p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -269,7 +338,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-                            </UncontrolledTooltip>
+</UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -288,7 +357,7 @@ class Dashboard extends React.Component {
                             <p className="text-muted">
                               Fifty percent of all respondents said they would
                               be more likely to shop at a company
-                            </p>
+</p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -305,7 +374,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-                            </UncontrolledTooltip>
+</UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -323,7 +392,7 @@ class Dashboard extends React.Component {
                             <p className="title">Release v2.0.0</p>
                             <p className="text-muted">
                               Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM
-                            </p>
+</p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -340,7 +409,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-                            </UncontrolledTooltip>
+</UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -355,12 +424,13 @@ class Dashboard extends React.Component {
                             </FormGroup>
                           </td>
                           <td>
-                            <p className="title">Export the processed files</p>
+                            <p className="title">Export the processed files
+</p>
                             <p className="text-muted">
                               The report also shows that consumers will not
                               easily forgive a company once a breach exposing
                               their personal data occurs.
-                            </p>
+</p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -377,7 +447,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-                            </UncontrolledTooltip>
+</UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -392,10 +462,11 @@ class Dashboard extends React.Component {
                             </FormGroup>
                           </td>
                           <td>
-                            <p className="title">Arival at export process</p>
+                            <p className="title">Arival at export process</p
+                            >
                             <p className="text-muted">
                               Capitol Hill, Seattle, WA 12:34 AM
-                            </p>
+</p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -412,7 +483,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-                            </UncontrolledTooltip>
+</UncontrolledTooltip>
                           </td>
                         </tr>
                       </tbody>
