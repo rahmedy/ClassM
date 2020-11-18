@@ -4,6 +4,25 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const routes = require("./routes");
 const app = express();
+const cors = require("cors");
+
+
+
+app.use(
+   
+    (req,res,next) => {
+      res.header('Access-Control-Allow-Origin','*');
+      res.header('Access-Control-Allow-Headers','*');
+  
+      // Handle initial OPTIONS request
+      if (req.method === "OPTIONS") {
+          res.header('Access-Control-Allow-Methods','GET, POST, PATCH, PUT, DELETE');
+          return res.status(200).json({});
+      }
+      next();
+  });
+  
+
 
 // Bodyparser middleware
 app.use(
@@ -12,19 +31,21 @@ app.use(
     })
 );
 app.use(bodyParser.json());
+
 // DB Config
 const db = require("./config/keys").mongoURI;
 // Connect to MongoDB
 mongoose.connect(
         // db,
-       "mongodb://localhost/classManager",
-       { useNewUrlParser: true }
+        db,
+        { useNewUrlParser: true }
     )
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
+
 // Passport config
 require("./config/passport")(passport);
 // Routes
