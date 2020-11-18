@@ -5,7 +5,7 @@ export default {
         return axios.get("/api/users/" + id) ;
     },
 
-    insertClass: function(classLoad) {
-        return axios.post("/api/class");
+    insertClass: function() {
+        return axios.post("/api/class/add");
     }
 }
