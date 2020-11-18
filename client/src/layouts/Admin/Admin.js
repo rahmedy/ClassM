@@ -80,6 +80,7 @@ class Admin extends React.Component {
   getRoutes = routes => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
+        console.log("admin.routes added");
         return (
           <Route
             path={prop.layout + prop.path}
@@ -87,8 +88,11 @@ class Admin extends React.Component {
             key={key}
           />
         );
+          
       } else {
+        console.log("admin.routes not added")
         return null;
+
       }
     });
   };
@@ -135,7 +139,7 @@ class Admin extends React.Component {
             />
             <Switch>
               {this.getRoutes(routes)}
-              <Redirect from="*" to="/admin/dashboard"/>
+              <Redirect from="*" to="/admin"/>
             </Switch>
             {// we don't want the Footer to be rendered on map page
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
