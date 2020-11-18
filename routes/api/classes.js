@@ -3,13 +3,14 @@ const router = express.Router();
 
 const Course = require("../../models/Classes");
 
-router.post("/", (req, res) => {
+router.post("/add", (req, res) => {
     console.log("POST CLASS:", req.body);
     Course.create({
-      className: req.body.className,
+      courseName: req.body.courseName,
       courseDescription: req.body.courseDescription,
-      location: req.body.location
-
+      location: req.body.location,
+      sections: req.body.sections,
+      textBooks: req.body.textBooks
     });
     
    res.end(); 

@@ -11,6 +11,7 @@ import RTLLayout from "layouts/RTL/RTL.js";
 import LoginLayout from "layouts/Login/Login.js"
 import SignupLayout from "layouts/SignUp/Signup.js"
 import StudentLayout from "layouts/Student/student.js"
+import ClassInsert from "./layouts/ClassInsert";
 
 
 
@@ -46,6 +47,7 @@ class App extends React.Component {
             <Router history={hist}>
                 <Switch>
                 <Route exact path="/student/:id" render={props => <StudentLayout {...props} />} />
+                <Route exact path="/addclass" render={props => <ClassInsert {...props} />} />
                 <Route exact path="/sign" render={props => <SignupLayout {...props} />} />
                 <Route exact path="/log" render={props => <LoginLayout {...props} unsetAuthenticated={this.unsetAuthenticated} setAuthenticated = {this.setAuthenticated}/>} />
                 <Route exact path="/admin" render={props => this.state.token? <AdminLayout {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} />
