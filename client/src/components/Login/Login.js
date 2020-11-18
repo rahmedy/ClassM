@@ -17,7 +17,11 @@ class LoginP extends React.Component {
   	state = {
       email: '',
       password: '',
+      emailTwo: '',
+      passwordTwo: '',
     };
+
+    
 
 	handleChange = event => {
       this.setState({
@@ -68,7 +72,7 @@ class LoginP extends React.Component {
     render(){
         return(
           <>
-     <Form  onClick={this.handleSubmit} className ="login-form"> 
+     <Form   className ="login-form"> 
     
     
         <h1 className= "wel">Class __anager</h1>
@@ -85,7 +89,9 @@ class LoginP extends React.Component {
             <Input type="password" name="password" id="examplePassword" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
           </FormGroup>
          
-            <Button color="warning" className= "btn-lg  btn-block"> Teacher Log In
+            <Button color="warning" onClick={this.handleSubmit} className= "btn-lg  btn-block"> Teacher Log In
+          </Button>
+          <Button color="warning" onClick={this.studentSubmit} className= "btn-lg  btn-block"> Student Log In
           </Button>
         
           
@@ -100,7 +106,7 @@ class LoginP extends React.Component {
 
       {/* this is the studen form  */}
 
-      <Form  onClick={this.studentSubmit} > 
+      {/* <Form  onClick={this.studentSubmit} > 
     
     
       <FormGroup >
@@ -117,7 +123,7 @@ class LoginP extends React.Component {
       <Button color="danger" className= "btn-lg  btn-block"> Student Log In
       </Button>
       
-  </Form>
+  </Form> */}
      
           </>  
         )
