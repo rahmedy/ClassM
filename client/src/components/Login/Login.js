@@ -25,6 +25,12 @@ class LoginP extends React.Component {
       }) 
     }
 
+    studentChange = event => {
+      this.setState({
+        [event.target.name]: event.target.value
+      }) 
+    }
+
 	handleSubmit = async event => {
 		event.preventDefault();
     	
@@ -41,11 +47,28 @@ class LoginP extends React.Component {
         this.props.history.push("/admin");
       }
     }
+
+    studentSubmit = async event => {
+      event.preventDefault();
+        
+        const user = this.state;
+        const endPoint = "http://localhost:5000/api/students/login";
+         
+        const config = {headers:{"Content-type":"application/json"}}
+        
+        const results = await axios.post(endPoint, user, config)
+        console.log(results);
+        if (results.data.success){
+          localStorage.setItem("token", results.data.token);
+          this.props.setAuthenticated(results.data.token);
+          this.props.history.push("/rtl");
+        }
+      }
     
     render(){
         return(
           <>
-     <Form  onSubmit={this.handleSubmit} className ="login-form"> 
+     <Form  onClick={this.handleSubmit} className ="login-form"> 
     
     
         <h1 className= "wel">Class __anager</h1>
@@ -61,12 +84,10 @@ class LoginP extends React.Component {
             <Label for="examplePassword">Password</Label>
             <Input type="password" name="password" id="examplePassword" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
           </FormGroup>
-          <FormGroup >
+         
             <Button color="warning" className= "btn-lg  btn-block"> Teacher Log In
           </Button>
-          <Button color="warning" onClick={this.handleSubmit} className= "btn-lg  btn-block"> Student Log In
-          </Button>
-          </FormGroup>
+        
           
           
           < Link to ="/sign">
@@ -76,6 +97,27 @@ class LoginP extends React.Component {
           <a className= "text-success " href='/'>Forgot Password?</a>
           
       </Form>
+
+      {/* this is the studen form  */}
+
+      <Form  onClick={this.studentSubmit} > 
+    
+    
+      <FormGroup >
+        
+        <Label for="exampleEmail">Email</Label>
+        <Input type="email" name="email" id="exampleEmail" onChange={this.studentChange} value={this.state.email} placeholder="Email" />
+      </FormGroup>
+    
+      <FormGroup>
+        <Label for="examplePassword">Password</Label>
+        <Input type="password" name="password" id="examplePassword" onChange={this.studentChange} value={this.state.password} placeholder="Password" />
+      </FormGroup>
+      
+      <Button color="danger" className= "btn-lg  btn-block"> Student Log In
+      </Button>
+      
+  </Form>
      
           </>  
         )
