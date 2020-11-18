@@ -44,7 +44,6 @@ import {
 
 // core components
 import {
-  chartExample2,
   chartExample3,
   chartExample4
 } from "variables/charts.js";
@@ -71,61 +70,16 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col className="text-center" sm="6">
-                      <h5 className="card-category">Total Shipments</h5>
-                      <CardTitle tag="h2">Upcoming Event</CardTitle>
+                      <h5 className="card-category">Teacher Dashboard</h5>
+                      <CardTitle tag="h2"> I do not know what will put here Yet </CardTitle>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
                         className="btn-group-toggle float-right"
                         data-toggle="buttons"
                       >
-                        <Button
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data1"
-                          })}
-                          color="info"
-                          id="0"
-                          size="sm"
-                          onClick={() => this.setBgChartData("data1")}
-                        >
-                          <input
-                            defaultChecked
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className=
-                            "d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Accounts
-</span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="1"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data2"
-                          })}
-                          onClick={() => this.setBgChartData("data2")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className=
-                            "d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Purchases
-</span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
-                          </span>
-                        </Button>
+                        
+                       
                         <Button
                           color="info"
                           id="2"
@@ -143,7 +97,7 @@ class Dashboard extends React.Component {
                           />
                           <span className=
                             "d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Sessions
+                            this refercne 
 </span>
                           <span className="d-block d-sm-none">
                             <i className="tim-icons icon-tap-02" />
@@ -165,18 +119,15 @@ class Dashboard extends React.Component {
             <Col lg="4">
               <Card className="card-chart">
                 <CardHeader>
-                  <h5 className="card-category">Total Shipments</h5>
+                  <h5 className="card-category">Class info 1 </h5>
                   <CardTitle tag="h3">
                     <i className="tim-icons icon-bell-55 text-info" />{" "}
-763,215
-</CardTitle>
+                          more data 
+                        </CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <Line
-                      data={chartExample2.data}
-                      options={chartExample2.options}
-                    />
+                  
                   </div>
                 </CardBody>
               </Card>
@@ -188,15 +139,12 @@ class Dashboard extends React.Component {
                   <CardTitle tag="h3">
                     <i className="tim-icons icon-delivery-fast text-primary"
                     />{" "}
-3,500€
-</CardTitle>
+                        3,500€
+                  </CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <Bar
-                      data={chartExample3.data}
-                      options={chartExample3.options}
-                    />
+                  
                   </div>
                 </CardBody>
               </Card>
@@ -207,15 +155,12 @@ class Dashboard extends React.Component {
                   <h5 className="card-category">Completed Tasks</h5>
                   <CardTitle tag="h3">
                     <i className="tim-icons icon-send text-success" />
-12,100K
-</CardTitle>
+                        12,100K
+                  </CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <Line
-                      data={chartExample4.data}
-                      options={chartExample4.options}
-                    />
+                  
                   </div>
                 </CardBody>
               </Card>
