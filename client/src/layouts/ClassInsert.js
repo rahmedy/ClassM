@@ -44,9 +44,17 @@ class ClassInsert extends Component {
 
         this.state = {
             courseName: '',
-            // sections: [],
+            sections: {
+                sectionNo: "",
+                time: "",
+                days: ""
+            },
             location: '',
-            // textBooks: [],
+            books: {
+                title: "",
+                author: "",
+                link: ""
+            },
             courseDescription: '',
         }
 
@@ -54,6 +62,7 @@ class ClassInsert extends Component {
 
     handleChangeInputName = async event => {
         const courseName = event.target.value
+        console.log(courseName);
         this.setState({ courseName })
     }
 
@@ -67,22 +76,78 @@ class ClassInsert extends Component {
         this.setState({ courseDescription })
     }
 
-    handleIncludeClass = async () => {
-        const { id, courseName, location, courseDescription } = this.state
-        const classLoad = { courseName, location, courseDescription  }
+    handleChangeSection = async event => {
+        const courseSection = event.target.value
+        this.setState({ sections: {
+            ...this.state.sections,
+            sectionNo: courseSection,
+            } })
+    }
 
+
+    handleChangeTime = async event => {
+        const courseTime = event.target.value
+        this.setState({ sections: {
+            ...this.state.sections,
+            time: courseTime} })
+    }
+
+
+    handleChangeDays = async event => {
+        const courseDays = event.target.value
+        this.setState({ sections: {
+            ...this.state.sections,
+            days: courseDays} })
+    }
+
+    handleChangeTitle = async event => {
+        const title = event.target.value
+        this.setState({ books: {
+            ...this.state.books,
+            title: title} })
+    }
+
+    handleChangeAuthor = async event => {
+        const author = event.target.value
+        this.setState({ books: {
+            ...this.state.books,
+            author: author} })
+    }
+
+    handleChangeLink = async event => {
+        const link = event.target.value
+        this.setState({ books: {
+            ...this.state.books,
+            link: link} })
+    }
+
+    handleIncludeClass = async () => {
+        const { courseName, location, courseDescription, sections, books } = this.state
+        const classLoad = { courseName, location, courseDescription, sections, books}
+
+        console.log(classLoad);
         await API.insertClass(classLoad).then(res => {
             window.alert(`Class inserted successfully`)
             this.setState({
                 courseName: '',
+                sections: {
+                    sectionNo: "",
+                    time: "",
+                    days: ""
+                },
                 location: '',
+                books: {
+                    title: "",
+                    author: "",
+                    link: ""
+                },
                 courseDescription: '',
             })
         })
     }
 
     render() {
-        const { courseName, location, courseDescription } = this.state
+        const { courseName, location, courseDescription, sections, books } = this.state
         return (
             <Wrapper>
                 <Title>Add Class </Title>
@@ -101,15 +166,54 @@ class ClassInsert extends Component {
                     onChange={this.handleChangeInputLocation}
                 />
 
-                <Label>Course Des: </Label>
+                <Label>Course Description: </Label>
                 <InputText
                     type="text"
                     value={courseDescription}
                     onChange={this.handleChangeInputDescription}
                 />
 
+                <Label>Sections: </Label>
+                <InputText
+                    type="text"
+                    placeholder="Section No."
+                    value={sections.sectionNo}
+                    onChange={this.handleChangeSection}
+                />
+                <InputText
+                    type="text"
+                    placeholder="Time"
+                    value={sections.time}
+                    onChange={this.handleChangeTime}
+                />
+                <InputText
+                    type="text"
+                    placeholder="Days"
+                    value={sections.days}
+                    onChange={this.handleChangeDays}
+                />
+
+                <Label>Books </Label>
+                <InputText
+                    type="text"
+                    placeholder="Title"
+                    value={books.title}
+                    onChange={this.handleChangeTitle}
+                />
+                <InputText
+                    type="text"
+                    placeholder="Author"
+                    value={books.author}
+                    onChange={this.handleChangeAuthor}
+                />
+                <InputText
+                    type="text"
+                    placeholder="Link to book"
+                    value={books.link}
+                    onChange={this.handleChangeLink}
+                />
+
                 <Button onClick={this.handleIncludeClass}>Add Class</Button>
-                {/* <CancelButton href={'/movies/list'}>Cancel</CancelButton> */}
             </Wrapper>
         )
     }
