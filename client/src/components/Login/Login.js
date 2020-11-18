@@ -48,7 +48,7 @@ class LoginP extends React.Component {
       if (results.data.success){
         localStorage.setItem("token", results.data.token);
         this.props.setAuthenticated(results.data.token);
-        this.props.history.push("/admin");
+        this.props.history.push("/admin/dashboard");
       }
     }
 
