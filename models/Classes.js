@@ -13,23 +13,25 @@ const CourseSchema = new Schema({
     },
     sections: [
         {
-            sectionNo: Number,
+            sectionNo: String,
             time: String,
             days: String
-        }
+        },
     ],
     location: {
         type: String,
-        required: true
+        required: false
     },
-    textBooks: [{
-        title: String,
-        author: String,
-        link: String
-    }],
+    textBooks: [
+        {
+            title: String,
+            author: String,
+            link: String
+        }
+    ],
     courseDescription: {
         type: String,
-        required: true,
+        required: false
     },
 });
 

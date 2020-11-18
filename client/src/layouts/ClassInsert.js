@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 // import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import API from "../utils/API";
-
 
 import styled from 'styled-components'
+import axios from 'axios';
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -37,7 +35,8 @@ const CancelButton = styled.a.attrs({
 })`
     margin: 15px 15px 15px 5px;
 `
-
+let textBooks = [];
+let sectionArr = [];
 class ClassInsert extends Component {
     constructor(props) {
         super(props)
@@ -50,7 +49,7 @@ class ClassInsert extends Component {
                 days: ""
             },
             location: '',
-            books: {
+            textBooks: {
                 title: "",
                 author: "",
                 link: ""
@@ -78,76 +77,134 @@ class ClassInsert extends Component {
 
     handleChangeSection = async event => {
         const courseSection = event.target.value
-        this.setState({ sections: {
-            ...this.state.sections,
-            sectionNo: courseSection,
-            } })
+        this.setState({
+            sections: {
+                ...this.state.sections,
+                sectionNo: courseSection,
+            }
+        })
     }
 
 
     handleChangeTime = async event => {
         const courseTime = event.target.value
-        this.setState({ sections: {
-            ...this.state.sections,
-            time: courseTime} })
+        this.setState({
+            sections: {
+                ...this.state.sections,
+                time: courseTime
+            }
+        })
     }
 
 
     handleChangeDays = async event => {
         const courseDays = event.target.value
-        this.setState({ sections: {
-            ...this.state.sections,
-            days: courseDays} })
+        this.setState({
+            sections: {
+                ...this.state.sections,
+                days: courseDays
+            }
+        })
     }
 
     handleChangeTitle = async event => {
         const title = event.target.value
-        this.setState({ books: {
-            ...this.state.books,
-            title: title} })
+        this.setState({
+            textBooks: {
+                ...this.state.textBooks,
+                title: title
+            }
+        })
     }
 
     handleChangeAuthor = async event => {
         const author = event.target.value
-        this.setState({ books: {
-            ...this.state.books,
-            author: author} })
+        this.setState({
+            textBooks: {
+                ...this.state.textBooks,
+                author: author
+            }
+        })
     }
 
     handleChangeLink = async event => {
         const link = event.target.value
-        this.setState({ books: {
-            ...this.state.books,
-            link: link} })
-    }
-
-    handleIncludeClass = async () => {
-        const { courseName, location, courseDescription, sections, books } = this.state
-        const classLoad = { courseName, location, courseDescription, sections, books}
-
-        console.log(classLoad);
-        await API.insertClass(classLoad).then(res => {
-            window.alert(`Class inserted successfully`)
-            this.setState({
-                courseName: '',
-                sections: {
-                    sectionNo: "",
-                    time: "",
-                    days: ""
-                },
-                location: '',
-                books: {
-                    title: "",
-                    author: "",
-                    link: ""
-                },
-                courseDescription: '',
-            })
+        this.setState({
+            textBooks: {
+                ...this.state.textBooks,
+                link: link
+            }
         })
     }
 
+    handleBook = async () => {
+        console.log("starting book...");
+        const bookToAdd = this.state.textBooks
+        textBooks.push(bookToAdd);
+        console.log(textBooks)
+        this.setState({
+            textBooks: {
+                title: "",
+                author: "",
+                link: ""
+            }
+        })
+    }
+
+    handleSection = async () => {
+        console.log("starting section...");
+        const sectionToAdd = this.state.sections
+        console.log(sectionToAdd)
+        sectionArr.push(sectionToAdd);
+        console.log(sectionArr)
+        this.setState({
+            sections: {
+                sectionNo: "",
+                time: "",
+                days: ""
+            }
+        })
+    }
+
+    handleIncludeClass = async () => {
+
+        const data = {
+            courseName: this.state.courseName,
+            sections: sectionArr,
+            location: this.state.location,
+            textBooks: textBooks,
+            courseDescription: this.state.courseDescription,
+        }
+        console.log(data)
+        await
+            axios({
+                method: "post",
+                url: "http://localhost:5000/api/class/add",
+                headers: {},
+                data: data
+            })
+                .then(res => {
+                    window.alert(`Class inserted successfully`)
+                    this.setState({
+                        courseName: '',
+                        sections: {
+                            sectionNo: "",
+                            time: "",
+                            days: ""
+                        },
+                        location: '',
+                        textBooks: {
+                            title: "",
+                            author: "",
+                            link: ""
+                        },
+                        courseDescription: '',
+                    })
+                })
+    }
+
     render() {
-        const { courseName, location, courseDescription, sections, books } = this.state
+        const { courseName, location, courseDescription, sections, textBooks } = this.state
         return (
             <Wrapper>
                 <Title>Add Class </Title>
@@ -172,7 +229,6 @@ class ClassInsert extends Component {
                     value={courseDescription}
                     onChange={this.handleChangeInputDescription}
                 />
-
                 <Label>Sections: </Label>
                 <InputText
                     type="text"
@@ -192,26 +248,31 @@ class ClassInsert extends Component {
                     value={sections.days}
                     onChange={this.handleChangeDays}
                 />
-
+                <Button onClick={this.handleSection}>
+                    Add Section!
+                </Button>
                 <Label>Books </Label>
                 <InputText
                     type="text"
                     placeholder="Title"
-                    value={books.title}
+                    value={textBooks.title}
                     onChange={this.handleChangeTitle}
                 />
                 <InputText
                     type="text"
                     placeholder="Author"
-                    value={books.author}
+                    value={textBooks.author}
                     onChange={this.handleChangeAuthor}
                 />
                 <InputText
                     type="text"
                     placeholder="Link to book"
-                    value={books.link}
+                    value={textBooks.link}
                     onChange={this.handleChangeLink}
                 />
+                <Button onClick={this.handleBook}>
+                    Add Book!
+                </Button>
 
                 <Button onClick={this.handleIncludeClass}>Add Class</Button>
             </Wrapper>
