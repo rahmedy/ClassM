@@ -16,7 +16,6 @@
 
 */
 import Dashboard from "views/Dashboard.js";
-// import Sign from "views/Sign.js";
 import Icons from "views/Icons.js";
 import Notifications from "views/Notifications.js";
 import Rtl from "views/Rtl.js";
@@ -25,14 +24,6 @@ import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
 
 var routes = [
-  // {
-  //   path: "/sign",
-  //   name: "Sign",
-  //   rtlName: "لوحة القيادة",
-  //   icon: "tim-icons icon-chart-pie-36",
-  //   component: Sign,
-  //   layout: "/login"
-  // },
   {
     path: "/dashboard",
     name: "Dashboard",

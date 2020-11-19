@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import API from "../../utils/API";
+
 import axios from "axios";
 
 export default function Student() {
