@@ -25,7 +25,7 @@ import UserProfile from "views/UserProfile.js";
 
 var routes = [
   {
-    path: "/dashboard",
+    path: "/dashboard/:id",
     name: "Dashboard",
     rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-pie-36",
