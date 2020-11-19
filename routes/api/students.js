@@ -8,7 +8,7 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-// const User = require("../../models/User");
+
 const Teacher = require("../../models/Teacher");
 const Student = require("../../models/Student");
 router.get('/', (req, res) => {
@@ -28,7 +28,6 @@ router.get("/teacher", (req, res) => {
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err))
 })
-const Class = require("../../models/Classes");
 // @route POST api/users/register
 // @desc Register user
 // @access Public

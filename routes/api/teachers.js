@@ -8,7 +8,7 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-const User = require("../../models/User");
+
 const Teacher = require("../../models/Teacher")
 router.get('/', (req, res) => {
   Teacher.find(req.query)

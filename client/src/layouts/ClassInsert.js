@@ -11,7 +11,8 @@ const Title = styled.h1.attrs({
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-    margin: 0 30px;
+    margin: 0 auto;
+    width: 75%;
 `
 
 const Label = styled.label`
@@ -207,11 +208,12 @@ class ClassInsert extends Component {
         const { courseName, location, courseDescription, sections, textBooks } = this.state
         return (
             <Wrapper>
-                <Title>Add Class </Title>
+                <Title>Create Classes</Title>
 
-                <Label>Name: </Label>
+                <Label>Course Name: </Label>
                 <InputText
                     type="text"
+                    placeholder="Course Name"
                     value={courseName}
                     onChange={this.handleChangeInputName}
                 />
@@ -219,6 +221,7 @@ class ClassInsert extends Component {
                 <Label>Location: </Label>
                 <InputText
                     type="text"
+                    placeholder="Buidling/Room No."
                     value={location}
                     onChange={this.handleChangeInputLocation}
                 />
@@ -226,6 +229,7 @@ class ClassInsert extends Component {
                 <Label>Course Description: </Label>
                 <InputText
                     type="text"
+                    placeholder="Course Description..."
                     value={courseDescription}
                     onChange={this.handleChangeInputDescription}
                 />
