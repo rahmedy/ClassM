@@ -15,11 +15,15 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+// import React from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+import API from "../utils/API";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 // reactstrap components
 import {
@@ -48,19 +52,11 @@ import {
   chartExample4
 } from "variables/charts.js";
 
-class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bigChartData: "data1"
-    };
-  }
-  setBgChartData = name => {
-    this.setState({
-      bigChartData: name
-    });
-  };
-  render() {
+export default function Dashboard() {
+ 
+// this is where the calls componet will go 
+
+
     return (
       <>
         <div className="content">
@@ -72,6 +68,9 @@ class Dashboard extends React.Component {
                     <Col className="text-center" sm="6">
                       <h5 className="card-category">Teacher Dashboard</h5>
                       <CardTitle tag="h2"> I do not know what will put here Yet </CardTitle>
+                      <p>User is a {user.type}</p>
+                      <p>first name: {user.firstName}</p>
+                      <p>Last Name: {user.lastName}</p>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
@@ -80,29 +79,7 @@ class Dashboard extends React.Component {
                       >
                         
                        
-                        <Button
-                          color="info"
-                          id="2"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data3"
-                          })}
-                          onClick={() => this.setBgChartData("data3")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className=
-                            "d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            this refercne 
-</span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
-                          </span>
-                        </Button>
+                    
                       </ButtonGroup>
                     </Col>
                   </Row>
@@ -127,7 +104,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                  
+                  {/* pass props here so the data can show up  */}
                   </div>
                 </CardBody>
               </Card>
@@ -139,7 +116,7 @@ class Dashboard extends React.Component {
                   <CardTitle tag="h3">
                     <i className="tim-icons icon-delivery-fast text-primary"
                     />{" "}
-                        3,500€
+                        More data 2
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
@@ -155,7 +132,7 @@ class Dashboard extends React.Component {
                   <h5 className="card-category">Completed Tasks</h5>
                   <CardTitle tag="h3">
                     <i className="tim-icons icon-send text-success" />
-                        12,100K
+                        More data 3 
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
@@ -188,19 +165,19 @@ class Dashboard extends React.Component {
                         onClick={e => e.preventDefault()}
                       >
                         Action
-</DropdownItem>
+                    </DropdownItem>
                       <DropdownItem
                         href="#pablo"
                         onClick={e => e.preventDefault()}
                       >
                         Another action
-</DropdownItem>
+                      </DropdownItem>
                       <DropdownItem
                         href="#pablo"
                         onClick={e => e.preventDefault()}
                       >
                         Something else
-</DropdownItem>
+                      </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </CardHeader>
@@ -224,7 +201,7 @@ class Dashboard extends React.Component {
                             >
                             <p className="text-muted">
                               Dwuamish Head, Seattle, WA 8:47 AM
-</p>
+                            </p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -241,7 +218,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-</UncontrolledTooltip>
+                            </UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -259,15 +236,6 @@ class Dashboard extends React.Component {
                               </Label>
                             </FormGroup>
                           </td>
-                          <td>
-                            <p className="title">GDPR Compliance</p>
-                            <p className="text-muted">
-                              The GDPR is a regulation that requires businesses
-                              to protect the personal data and privacy of Europe
-                              citizens for transactions that occur within EU
-                              member states.
-</p>
-                          </td>
                           <td className="td-actions text-right">
                             <Button
                               color="link"
@@ -283,7 +251,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-</UncontrolledTooltip>
+                        </UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -302,7 +270,7 @@ class Dashboard extends React.Component {
                             <p className="text-muted">
                               Fifty percent of all respondents said they would
                               be more likely to shop at a company
-</p>
+                          </p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -319,7 +287,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-</UncontrolledTooltip>
+                          </UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -337,7 +305,7 @@ class Dashboard extends React.Component {
                             <p className="title">Release v2.0.0</p>
                             <p className="text-muted">
                               Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM
-</p>
+                          </p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -354,7 +322,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-</UncontrolledTooltip>
+                        </UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -370,12 +338,12 @@ class Dashboard extends React.Component {
                           </td>
                           <td>
                             <p className="title">Export the processed files
-</p>
+                            </p>
                             <p className="text-muted">
                               The report also shows that consumers will not
                               easily forgive a company once a breach exposing
                               their personal data occurs.
-</p>
+                            </p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -392,7 +360,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-</UncontrolledTooltip>
+                          </UncontrolledTooltip>
                           </td>
                         </tr>
                         <tr>
@@ -411,7 +379,7 @@ class Dashboard extends React.Component {
                             >
                             <p className="text-muted">
                               Capitol Hill, Seattle, WA 12:34 AM
-</p>
+                            </p>
                           </td>
                           <td className="td-actions text-right">
                             <Button
@@ -428,7 +396,7 @@ class Dashboard extends React.Component {
                               placement="right"
                             >
                               Edit Task
-</UncontrolledTooltip>
+                          </UncontrolledTooltip>
                           </td>
                         </tr>
                       </tbody>
@@ -440,60 +408,60 @@ class Dashboard extends React.Component {
             <Col lg="6" md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Simple Table</CardTitle>
+                  <CardTitle tag="h4">Attendance  Table</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Table className="tablesorter" responsive>
                     <thead className="text-primary">
                       <tr>
                         <th>Name</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th className="text-center">Salary</th>
+                        <th>Studnet Id</th>
+                        
+                  
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>Dakota Rice</td>
-                        <td>Niger</td>
-                        <td>Oud-Turnhout</td>
-                        <td className="text-center">$36,738</td>
+                        <td>1</td>
+                        
+                    
                       </tr>
                       <tr>
                         <td>Minerva Hooper</td>
-                        <td>Curaçao</td>
-                        <td>Sinaai-Waas</td>
-                        <td className="text-center">$23,789</td>
+                        <td>2</td>
+                        
+                    
                       </tr>
                       <tr>
                         <td>Sage Rodriguez</td>
-                        <td>Netherlands</td>
-                        <td>Baileux</td>
-                        <td className="text-center">$56,142</td>
+                        <td>3</td>
+                        
+                      
                       </tr>
                       <tr>
                         <td>Philip Chaney</td>
-                        <td>Korea, South</td>
-                        <td>Overland Park</td>
-                        <td className="text-center">$38,735</td>
+                        <td>4</td>
+                        
+                      
                       </tr>
                       <tr>
                         <td>Doris Greene</td>
-                        <td>Malawi</td>
-                        <td>Feldkirchen in Kärnten</td>
-                        <td className="text-center">$63,542</td>
+                        <td>5</td>
+                        
+                        
                       </tr>
                       <tr>
                         <td>Mason Porter</td>
-                        <td>Chile</td>
-                        <td>Gloucester</td>
-                        <td className="text-center">$78,615</td>
+                        <td>6</td>
+                        
+                        
                       </tr>
                       <tr>
                         <td>Jon Porter</td>
-                        <td>Portugal</td>
-                        <td>Gloucester</td>
-                        <td className="text-center">$98,615</td>
+                        <td>7</td>
+                     
+                       
                       </tr>
                     </tbody>
                   </Table>
@@ -505,6 +473,6 @@ class Dashboard extends React.Component {
       </>
     );
   }
-}
 
-export default Dashboard;
+
+
