@@ -8,23 +8,23 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-const User = require("../../models/User");
+// const User = require("../../models/User");
 const Teacher = require("../../models/Teacher");
 const Student = require("../../models/Student");
 router.get('/', (req, res) => {
-  User.find(req.query)
+  Student.find(req.query)
   .then(dbModel => res.json(dbModel))
   .catch(err => res.status(422).json(err));
 })
 
 router.get('/:id', (req, res)=> {
-  User.findById(req.params.id)
+  Student.findById(req.params.id)
   .then(dbModel => res.json(dbModel)) 
   .catch(err => res.status(422).json(err));
 })
 
 router.get("/teacher", (req, res) => {
-  User.find({ type: { $regex: 'teacher' } })
+  Teacher.find({ type: { $regex: 'teacher' } })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err))
 })

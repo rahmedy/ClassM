@@ -11,13 +11,13 @@ const validateLoginInput = require("../../validation/login");
 const User = require("../../models/User");
 const Teacher = require("../../models/Teacher")
 router.get('/', (req, res) => {
-  User.find(req.query)
+  Teacher.find(req.query)
   .then(dbModel => res.json(dbModel))
   .catch(err => res.status(422).json(err));
 })
 
 router.get('/:id', (req, res)=> {
-  User.findById(req.params.id)
+  Teacher.findById(req.params.id)
   .then(dbModel => res.json(dbModel)) 
   .catch(err => res.status(422).json(err));
 })
