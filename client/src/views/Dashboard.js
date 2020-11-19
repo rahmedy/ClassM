@@ -52,10 +52,21 @@ import {
   chartExample4
 } from "variables/charts.js";
 
-export default function Dashboard() {
-
+export default function Dashboard(props) {
+console.log(props.match.params.id)
+const id = props.match.params.id
 // this is where the calls componet will go 
 
+const [user, setUser] = useState({});
+
+// When this component mounts, grab the book with the _id of props.match.params.id
+// e.g. localhost:3000/books/599dcb67f0f16317844583fc
+console.log(id)
+useEffect(() => {
+    axios.get("http://localhost:5000/api/students/" + id).then(res => {setUser(res.data)})
+    .catch(err => console.log(err));
+}, [])
+console.log(user)
 
     return (
       <>
@@ -67,8 +78,8 @@ export default function Dashboard() {
                   <Row>
                     <Col className="text-center" sm="6">
                       <h5 className="card-category">Teacher Dashboard</h5>
+                        <h1>Name {user.firstName}</h1>
                       <CardTitle tag="h2"> I do not know what will put here Yet </CardTitle>
-                    
                     </Col>
                     <Col sm="6">
                       <ButtonGroup

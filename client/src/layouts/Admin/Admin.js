@@ -35,6 +35,7 @@ var ps;
 class Admin extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.match.params)
     this.state = {
       backgroundColor: "blue",
       sidebarOpened:
@@ -139,7 +140,7 @@ class Admin extends React.Component {
             />
             <Switch>
               {this.getRoutes(routes)}
-              <Redirect from="*" to="/admin/dashboard"/>
+              <Redirect {...this.props.match.params} from="*" to="/admin/dashboard"/>
             </Switch>
             {// we don't want the Footer to be rendered on map page
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
