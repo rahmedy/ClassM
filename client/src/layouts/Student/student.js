@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import API from "../../utils/API";
+// import API from "../../utils/API";
+import axios from "axios";
 
 export default function Student() {
     const [user, setUser] = useState({});
@@ -8,10 +9,10 @@ export default function Student() {
     // When this component mounts, grab the book with the _id of props.match.params.id
     // e.g. localhost:3000/books/599dcb67f0f16317844583fc
     const { id } = useParams()
+    console.log(id)
     useEffect(() => {
-        API.getStudents(id)
-            .then(res => setUser(res.data))
-            .catch(err => console.log(err));
+        axios.get("http://localhost:5000/api/students/" + id).then(res => {setUser(res.data)})
+        .catch(err => console.log(err));
     }, [])
     console.log(user)
     return (
