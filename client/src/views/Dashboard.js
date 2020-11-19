@@ -53,7 +53,7 @@ import {
 } from "variables/charts.js";
 
 export default function Dashboard() {
- 
+
 // this is where the calls componet will go 
 
 
@@ -68,9 +68,7 @@ export default function Dashboard() {
                     <Col className="text-center" sm="6">
                       <h5 className="card-category">Teacher Dashboard</h5>
                       <CardTitle tag="h2"> I do not know what will put here Yet </CardTitle>
-                      <p>User is a {user.type}</p>
-                      <p>first name: {user.firstName}</p>
-                      <p>Last Name: {user.lastName}</p>
+                    
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
