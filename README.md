@@ -26,6 +26,7 @@ Run the following command:
 ``` npm run dev  ```
 
 
-Contact rayanahmedy1999@gmail.com
-##
-GitHub account:  https://github.com/@rahmedy
+## Contact 
+rayanahmedy1999@gmail.com
+## GitHub account: 
+https://github.com/@rahmedy
