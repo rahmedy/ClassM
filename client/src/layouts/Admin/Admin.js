@@ -23,7 +23,6 @@ import PerfectScrollbar from "perfect-scrollbar";
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Footer from "components/Footer/Footer.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
@@ -116,17 +115,6 @@ class Admin extends React.Component {
     return (
       <>
         <div className="wrapper">
-          <Sidebar
-            {...this.props}
-            routes={routes}
-            bgColor={this.state.backgroundColor}
-            logo={{
-              outterLink: "https://www.creative-tim.com/",
-              text: "Creative Tim",
-              imgSrc: logo
-            }}
-            toggleSidebar={this.toggleSidebar}
-          />
           <div
             className="main-panel"
             ref="mainPanel"

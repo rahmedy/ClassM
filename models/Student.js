@@ -29,6 +29,12 @@ const StudentSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  schedule: [
+    {
+      courseName: String,
+      sectionNo: String
+    }
+  ]
 });
 module.exports = Student = mongoose.model("student", StudentSchema);

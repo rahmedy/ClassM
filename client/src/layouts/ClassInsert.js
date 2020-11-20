@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 
 import styled from 'styled-components'
 import axios from 'axios';
+import { idText } from 'typescript';
+import { BrowserRouter as Router, Route,Switch, Redirect} from 'react-router-dom'
+import Dashboard from "layouts/Admin/Admin";
+
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -38,10 +42,12 @@ const CancelButton = styled.a.attrs({
 `
 let textBooks = [];
 let sectionArr = [];
+let sectionNoArr = [];
+let classNames = [];
 class ClassInsert extends Component {
     constructor(props) {
         super(props)
-
+        console.log(props.match.params.id)
         this.state = {
             courseName: '',
             sections: {
@@ -59,10 +65,12 @@ class ClassInsert extends Component {
         }
 
     }
+    redirect = () => {
+        this.props.history.push('/admin/dashboard/' + this.props.match.params.id);
+    }
 
     handleChangeInputName = async event => {
         const courseName = event.target.value
-        console.log(courseName);
         this.setState({ courseName })
     }
 
@@ -139,10 +147,8 @@ class ClassInsert extends Component {
     }
 
     handleBook = async () => {
-        console.log("starting book...");
         const bookToAdd = this.state.textBooks
         textBooks.push(bookToAdd);
-        console.log(textBooks)
         this.setState({
             textBooks: {
                 title: "",
@@ -155,7 +161,9 @@ class ClassInsert extends Component {
     handleSection = async () => {
         console.log("starting section...");
         const sectionToAdd = this.state.sections
-        console.log(sectionToAdd)
+        const singleNo = this.state.sections.sectionNo
+        sectionNoArr.push(singleNo);
+        console.log(sectionNoArr);
         sectionArr.push(sectionToAdd);
         console.log(sectionArr)
         this.setState({
@@ -176,7 +184,7 @@ class ClassInsert extends Component {
             textBooks: textBooks,
             courseDescription: this.state.courseDescription,
         }
-        console.log(data)
+
         await
             axios({
                 method: "post",
@@ -184,23 +192,40 @@ class ClassInsert extends Component {
                 headers: {},
                 data: data
             })
-                .then(res => {
-                    window.alert(`Class inserted successfully`)
-                    this.setState({
-                        courseName: '',
-                        sections: {
-                            sectionNo: "",
-                            time: "",
-                            days: ""
-                        },
-                        location: '',
-                        textBooks: {
-                            title: "",
-                            author: "",
-                            link: ""
-                        },
-                        courseDescription: '',
-                    })
+                .then(async (res) => {
+                    const courseName = this.state.courseName;
+                    console.log(courseName)
+                    classNames.push(courseName);
+                    console.log(classNames)
+                    const id = this.props.match.params.id
+                    await
+                        axios({
+                            method: "put",
+                            url: "http://localhost:5000/api/teachers/update/" + id,
+                            headers: {},
+                            data: {
+                                id: id,
+                                courseName: courseName,
+                                sectionNo: sectionNoArr
+                            }
+                        }).then(async (res) => {
+                            window.alert(`Class inserted successfully`)
+                            this.setState({
+                                courseName: '',
+                                sections: {
+                                    sectionNo: "",
+                                    time: "",
+                                    days: ""
+                                },
+                                location: '',
+                                textBooks: {
+                                    title: "",
+                                    author: "",
+                                    link: ""
+                                },
+                                courseDescription: '',
+                            })
+                        })
                 })
     }
 
@@ -279,6 +304,11 @@ class ClassInsert extends Component {
                 </Button>
 
                 <Button onClick={this.handleIncludeClass}>Add Class</Button>
+
+                <Button onClick={this.redirect}>
+                    Dashboard
+                    <Route path={"/admin/dashboard/" + this.props.match.params.id} component={Dashboard}></Route>
+                </Button>
             </Wrapper>
         )
     }
