@@ -15,16 +15,17 @@ ClassManager is a MERN application that lets students and teachers upload their 
 ## Installation
 To installrun the following command:
 ``` npm i ```
+
+## Tests
+Run the following command:
+``` npm run dev  ```
+
 ## Use
  Teachers are able to load their class structure and data all onto one application, so that a student may create an account and be able to easily access any class documents for the specific class.
 ## License
 This project is licensed under MIT license.
 ## Contribution 
 Rayan Ahmedy, Matthew Stalzer, Courtney Paasch, Jake Battaglia, Hailey Nicole
-## Tests
-Run the following command:
-``` npm run dev  ```
-
 
 ## Contact 
 rayanahmedy1999@gmail.com
