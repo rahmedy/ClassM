@@ -15,5 +15,18 @@ router.post("/add", (req, res) => {
     
    res.end(); 
   })
+
+router.get("/get", (req, res) => {
+  console.log("gettttt")
+  Course.find({_id: "5fb7269ecd329f2566841669" }, function(err, docs) {
+    if (!err) { 
+        console.log(docs);
+        process.exit();
+    }
+    else {
+        throw err;
+    }
+});
+})
 module.exports = router;
 
