@@ -19,6 +19,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style.css"
+import { Link } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -80,9 +81,11 @@ export default function Dashboard(props) {
                         className="btn-group-toggle addbutton"
                         data-toggle="buttons"
                       >
-                        <Button> 
-                          Add a New Class!
+                        <Link to = "/addclass/:id">
+                        <Button>
+                          Add a Class!
                         </Button>
+                        </Link>
                       </ButtonGroup>
                     </Col>
                   </Row>
