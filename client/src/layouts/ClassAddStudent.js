@@ -7,8 +7,12 @@ import { BrowserRouter as Router, Route,Switch, Redirect} from 'react-router-dom
 import Dashboard from "layouts/Admin/Admin";
 
 const Title = styled.h1.attrs({
-    className: 'h1',
-})``
+    className: 'h1 text-info',
+})`
+
+    margin-top: 20px;
+
+`
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
@@ -17,8 +21,12 @@ const Wrapper = styled.div.attrs({
     width: 75%;
 `
 
-const Label = styled.label`
-    margin: 5px;
+const Label = styled.label.attrs({
+    className: `text-success`,
+})`
+    margin: 0px;
+    font-size: 20px;
+
 `
 
 const InputText = styled.input.attrs({
@@ -111,7 +119,7 @@ class ClassAddStudent extends Component {
                     value={courseName}
                     onChange={this.handleNameChange}
                 />
-                <Label>Section No.: </Label>
+                <Label>Section No: </Label>
                 <InputText
                     type="text"
                     placeholder="Section Number"
@@ -125,7 +133,7 @@ class ClassAddStudent extends Component {
                     Classes listed Below:
                 </Title>
                 {schedule.map((course, index) => (
-                    <h1 key={index}>{course.courseName} => {course.sectionNo}</h1>
+                    <h1 key={index}>{course.courseName} ={">"} {course.sectionNo}</h1>
                 ))}
                 <Button onClick={this.complete}>
                     Complete
