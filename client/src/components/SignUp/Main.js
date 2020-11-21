@@ -4,6 +4,7 @@ import Option from 'components/SignUp/Option';
 import Info from 'components/SignUp/Info';
 import { Button } from "reactstrap";
 import axios from "axios";
+import { Link, Redirect } from 'react-router-dom';
 // import Teacher from 'components/SignUp/Teacher';
 
 
@@ -71,6 +72,10 @@ class Main extends React.Component {
         this.setState({ [Input]: e.target.value });
     }
 
+    handleRedirect = () => {
+       return <Redirect to='/log'/>
+    }
+
     showStep = () => {
         const { step, firstName, lastName,email,password } = this.state;
         if (step === 1)
@@ -108,7 +113,11 @@ class Main extends React.Component {
                     email={email}
                     prevStep={this.prevStep}
                      />
-                     <Button color="warning" onClick={this.handleSubmit} className="btn-lg  btn-block">Submit</Button>
+                     <Button color="warning" onClick={this.handleSubmit} className="btn-lg  btn-block">Save</Button>
+
+                     <Link to="/log">
+                         <a className= "text-success su" href ="/">Return to Login</a>
+                     </Link>
                      </>
                 ); 
             }

@@ -110,7 +110,7 @@ class AdminNavbar extends React.Component {
                 </button>
               </div>
               <NavbarBrand href="#pablo" onClick={e => e.preventDefault()}>
-                {this.props.brandText}
+                Class Manager
               </NavbarBrand>
             </div>
             <button
@@ -129,57 +129,7 @@ class AdminNavbar extends React.Component {
             </button>
             <Collapse navbar isOpen={this.state.collapseOpen}>
               <Nav className="mr-auto" navbar>
-                <InputGroup className="search-bar">
-                  <Button
-                    color="link"
-                    data-target="#searchModal"
-                    data-toggle="modal"
-                    id="search-button"
-                    onClick={this.toggleModalSearch}
-                  >
-                    <i className="tim-icons icon-zoom-split" />
-                    <span className="d-lg-none d-md-block">Search</span>
-                  </Button>
-                </InputGroup>
-                <UncontrolledDropdown nav>
-                  <DropdownToggle
-                    caret
-                    color="default"
-                    data-toggle="dropdown"
-                    nav
-                  >
-                    <div className="notification d-none d-lg-block d-xl-block" />
-                    <i className="tim-icons icon-sound-wave" />
-                    <p className="d-lg-none">Notifications</p>
-                  </DropdownToggle>
-                  <DropdownMenu className="dropdown-navbar" tag="ul" right>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Mike John responded to your email
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        You have 5 more tasks
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Your friend Michael is in town
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Another notification
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Another one
-                      </DropdownItem>
-                    </NavLink>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+          
                 <UncontrolledDropdown nav>
                   <DropdownToggle
                     caret
@@ -195,13 +145,6 @@ class AdminNavbar extends React.Component {
                     <p className="d-lg-none">Log out</p>
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-navbar" tag="ul">
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">Profile</DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">Settings</DropdownItem>
-                    </NavLink>
-                    <DropdownItem divider tag="li" />
                     <NavLink tag="li">
                       <DropdownItem className="nav-item">Log out</DropdownItem>
                     </NavLink>

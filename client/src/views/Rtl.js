@@ -15,11 +15,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
+// import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./style.css"
+import { Link } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -29,536 +29,191 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
-  Input,
   Table,
   Row,
   Col,
   UncontrolledTooltip
 } from "reactstrap";
 
-// core components
-import {
-  chartExample1,
-  chartExample2,
-  chartExample3,
-  chartExample4
-} from "variables/charts.js";
+export default function Dashboard(props) {
+  console.log(props.match.params.id)
+  const id = props.match.params.id
+  // this is where the calls componet will go 
 
-class Rtl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bigChartData: "data1"
-    };
-  }
-  setBgChartData = name => {
-    this.setState({
-      bigChartData: name
-    });
-  };
-  render() {
+  const [user, setUser] = useState({});
+  var schedule = [];
+
+  // When this component mounts, grab the book with the _id of props.match.params.id
+  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+  console.log(id)
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/students/" + id).then(res => { setUser(res.data) })
+      .catch(err => console.log(err));
+  }, [])
+
+  if (user.schedule) {
+    schedule = user.schedule;
+
+      for(var i=0; i<schedule.length; i++) {
+        var curCourse = schedule[i];
+        console.log(curCourse);
+
+       
+      }
+
+
+
     return (
       <>
-        <div className="content">
+        <div className="studentDash">
           <Row>
             <Col xs="12">
-              <Card className="card-chart">
+              <Card>
                 <CardHeader>
                   <Row>
-                    <Col className="text-right" sm="6">
-                      <h5 className="card-category">مجموع الشحنات</h5>
-                      <CardTitle tag="h2">أداء</CardTitle>
+                    <Col sm="6">
+                      <h5 className="card-category">Teacher Dashboard</h5>
+                      <h1>Welcome {user.firstName} {user.lastname}!</h1>
+                      <h4>Your Account ID: {user._id}</h4>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
-                        className="btn-group-toggle float-left"
+                        className="btn-group-toggle addbutton"
                         data-toggle="buttons"
                       >
-                        <Button
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data1"
-                          })}
-                          color="primary"
-                          id="0"
-                          size="sm"
-                          onClick={() => this.setBgChartData("data1")}
-                        >
-                          <input
-                            defaultChecked
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            حسابات
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
-                          </span>
+                        <Link to = "/addclass/:id">
+                        <Button>
+                          Add a Class!
                         </Button>
-                        <Button
-                          color="primary"
-                          id="1"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data2"
-                          })}
-                          onClick={() => this.setBgChartData("data2")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            المشتريات
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="primary"
-                          id="2"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data3"
-                          })}
-                          onClick={() => this.setBgChartData("data3")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            جلسات
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
-                          </span>
-                        </Button>
+                        </Link>
                       </ButtonGroup>
                     </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <Line
-                      data={chartExample1[this.state.bigChartData]}
-                      options={chartExample1.options}
-                    />
+
                   </div>
                 </CardBody>
               </Card>
             </Col>
           </Row>
           <Row>
-            <Col className="text-right" lg="4">
+            <Col lg="4">
               <Card className="card-chart">
                 <CardHeader>
-                  <h5 className="card-category">شحنات كاملة</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-bell-55 text-primary" />{" "}
-                    763,215
+                    <u>{schedule[0].courseName}</u>
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={chartExample2.data}
-                      options={chartExample2.options}
-                    />
-                  </div>
+                  <h4>Days:</h4>
+                  <h4>Time:</h4>
+                  <h4>Location:</h4>
+                  <h4>Course Description:</h4>
+                  <h4>Student List:</h4>
                 </CardBody>
               </Card>
             </Col>
-            <Col className="text-right" lg="4">
+            <Col lg="4">
               <Card className="card-chart">
                 <CardHeader>
-                  <h5 className="card-category">المبيعات اليومية</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-delivery-fast text-info" />{" "}
-                    3,500€
+                    <u>{schedule[1].courseName}</u>
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
-                    <Bar
-                      data={chartExample3.data}
-                      options={chartExample3.options}
-                    />
-                  </div>
+                  <h4>Days:</h4>
+                  <h4>Time:</h4>
+                  <h4>Location:</h4>
+                  <h4>Course Description:</h4>
+                  <h4>Student List:</h4>
                 </CardBody>
               </Card>
             </Col>
-            <Col className="text-right" lg="4">
+            <Col lg="4">
               <Card className="card-chart">
                 <CardHeader>
-                  <h5 className="card-category">المهام المكتملة</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-send text-success" /> 12,100K
+                    <u>{schedule[2].courseName}</u>
+
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={chartExample4.data}
-                      options={chartExample4.options}
-                    />
-                  </div>
+                  <h4>Days:</h4>
+                  <h4>Time:</h4>
+                  <h4>Location:</h4>
+                  <h4>Course Description:</h4>
+                  <h4>Student List:</h4>
                 </CardBody>
               </Card>
             </Col>
           </Row>
           <Row>
-            <Col className="text-center" lg="6" sm="6">
-              <Card className="card-tasks text-left">
-                <CardHeader className="text-right">
-                  <h6 className="title d-inline">تتبع</h6>{" "}
-                  <p className="card-category d-inline">اليوم</p>
-                  <UncontrolledDropdown className="float-left">
-                    <DropdownToggle
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      caret
-                      color="link"
-                      data-toggle="dropdown"
-                      id="dropdownMenuLink"
-                    >
-                      <i className="tim-icons icon-settings-gear-63" />
-                    </DropdownToggle>
-                    <DropdownMenu aria-labelledby="dropdownMenuLink">
-                      <DropdownItem
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                      >
-                        عمل
-                      </DropdownItem>
-                      <DropdownItem
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                      >
-                        عمل آخر
-                      </DropdownItem>
-                      <DropdownItem
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                      >
-                        شيء آخر هنا
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </CardHeader>
-                <CardBody>
-                  <div className="table-full-width table-responsive">
-                    <Table>
-                      <tbody>
-                        <tr>
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input
-                                  defaultChecked
-                                  defaultValue=""
-                                  type="checkbox"
-                                />
-                                <span className="form-check-sign">
-                                  <span className="check" />
-                                </span>
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td className="text-right">
-                            <p className="title">مركز معالجة موقع محور</p>
-                            <p className="text-muted">نص آخر هناالوثائق</p>
-                          </td>
-                          <td className="td-actions">
-                            <Button
-                              color="link"
-                              id="tooltip591536518"
-                              title=""
-                              type="button"
-                            >
-                              <i className="tim-icons icon-settings" />
-                            </Button>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target="tooltip591536518"
-                              placement="right"
-                            >
-                              مهمة تحرير
-                            </UncontrolledTooltip>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultValue="" type="checkbox" />
-                                <span className="form-check-sign">
-                                  <span className="check" />
-                                </span>
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td className="text-right">
-                            <p className="title">لامتثال GDPR</p>
-                            <p className="text-muted">
-                              الناتج المحلي الإجمالي هو نظام يتطلب من الشركات
-                              حماية البيانات الشخصية والخصوصية لمواطني أوروبا
-                              بالنسبة للمعاملات التي تتم داخل الدول الأعضاء في
-                              الاتحاد الأوروبي.
-                            </p>
-                          </td>
-                          <td className="td-actions">
-                            <Button
-                              color="link"
-                              id="tooltip36890049"
-                              title=""
-                              type="button"
-                            >
-                              <i className="tim-icons icon-settings" />
-                            </Button>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target="tooltip36890049"
-                              placement="right"
-                            >
-                              مهمة تحرير
-                            </UncontrolledTooltip>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultValue="" type="checkbox" />
-                                <span className="form-check-sign">
-                                  <span className="check" />
-                                </span>
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td className="text-right">
-                            <p className="title">القضاياالقضايا</p>
-                            <p className="text-muted">
-                              سيكونونقال 50٪ من جميع المستجيبين أنهم سيكونون
-                              أكثر عرضة للتسوق في شركة
-                            </p>
-                          </td>
-                          <td className="td-actions">
-                            <Button
-                              color="link"
-                              id="tooltip5456779"
-                              title=""
-                              type="button"
-                            >
-                              <i className="tim-icons icon-settings" />
-                            </Button>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target="tooltip5456779"
-                              placement="right"
-                            >
-                              مهمة تحرير
-                            </UncontrolledTooltip>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input
-                                  defaultChecked
-                                  defaultValue=""
-                                  type="checkbox"
-                                />
-                                <span className="form-check-sign">
-                                  <span className="check" />
-                                </span>
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td className="text-right">
-                            <p className="title">
-                              تصدير الملفات التي تمت معالجتها
-                            </p>
-                            <p className="text-muted">
-                              كما يبين التقرير أن المستهلكين لن يغفروا شركة
-                              بسهولة بمجرد حدوث خرق يعرض بياناتهم الشخصية.
-                            </p>
-                          </td>
-                          <td className="td-actions">
-                            <Button
-                              color="link"
-                              id="tooltip989428493"
-                              title=""
-                              type="button"
-                            >
-                              <i className="tim-icons icon-settings" />
-                            </Button>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target="tooltip989428493"
-                              placement="right"
-                            >
-                              مهمة تحرير
-                            </UncontrolledTooltip>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input
-                                  defaultChecked
-                                  defaultValue=""
-                                  type="checkbox"
-                                />
-                                <span className="form-check-sign">
-                                  <span className="check" />
-                                </span>
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td className="text-right">
-                            <p className="title">الوصول إلى عملية التصدير</p>
-                            <p className="text-muted">
-                              سياسة السيء إنطلاق في قبل, مساعدة والمانيا أخذ قد.
-                              بل أما أمام ماشاء الشتاء،, تكاليف الإقتصادي بـ
-                              حين. ٣٠ يتعلّق للإتحاد ولم, وتم هناك مدينة بتحدّي
-                              إذ, كان بل عمل
-                            </p>
-                          </td>
-                          <td className="td-actions">
-                            <Button
-                              color="link"
-                              id="tooltip169784793"
-                              title=""
-                              type="button"
-                            >
-                              <i className="tim-icons icon-settings" />
-                            </Button>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target="tooltip169784793"
-                              placement="right"
-                            >
-                              مهمة تحرير
-                            </UncontrolledTooltip>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultValue="" type="checkbox" />
-                                <span className="form-check-sign">
-                                  <span className="check" />
-                                </span>
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td className="text-right">
-                            <p className="title">الافراج عن v2.0.0</p>
-                            <p className="text-muted">
-                              عن رئيس طوكيو البولندي لمّ, مايو مرجع وباءت قبل
-                              هو, تسمّى الطريق الإقتصادي ذات أن. لغات الإطلاق
-                              الفرنسية دار ان, بين بتخصيص الساحة اقتصادية أم. و
-                              الآخ
-                            </p>
-                          </td>
-                          <td className="td-actions">
-                            <Button
-                              color="link"
-                              id="tooltip554497871"
-                              title=""
-                              type="button"
-                            >
-                              <i className="tim-icons icon-settings" />
-                            </Button>
-                            <UncontrolledTooltip
-                              delay={0}
-                              target="tooltip554497871"
-                              placement="right"
-                            >
-                              مهمة تحرير
-                            </UncontrolledTooltip>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col lg="6" sm="6">
+            <Col lg="6" md="12">
               <Card>
-                <CardHeader className="text-right">
-                  <CardTitle tag="h4">جدول بسيط</CardTitle>
+              <CardHeader>
+                  <CardTitle tag="h4">All Students</CardTitle>
+                </CardHeader>
+                <CardBody>
+                <Table className="tablesorter" responsive>
+                    <thead className="text-primary">
+                      <tr>
+                        <th>Student Name</th>
+                        <th>Email</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{schedule[0].courseName}</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>{schedule[1].courseName}</td>
+                        <td>2</td>
+                      </tr>
+                      <tr>
+                        <td>{schedule[2].courseName}</td>
+                        <td>3</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col lg="6" md="12">
+              <Card>
+                <CardHeader>
+                  <CardTitle tag="h4">Grades</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Table className="tablesorter" responsive>
                     <thead className="text-primary">
                       <tr>
-                        <th>اسم</th>
-                        <th>بلد</th>
-                        <th>مدينة</th>
-                        <th className="text-center">راتب</th>
+                        <th>Course</th>
+                        <th>Grade</th>
+
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>رايس داكوتا</td>
-                        <td>النيجر</td>
-                        <td>العود-تورنهاوت</td>
-                        <td className="text-center">$36,738</td>
+                        <td>{schedule[0].courseName}</td>
+                        <td>1</td>
+
+
                       </tr>
                       <tr>
-                        <td>مينيرفا هوبر</td>
-                        <td>كوراساو</td>
-                        <td>Sinaai-واس</td>
-                        <td className="text-center">$23,789</td>
+                        <td>{schedule[1].courseName}</td>
+                        <td>2</td>
+
+
                       </tr>
                       <tr>
-                        <td>سيج رودريجيز</td>
-                        <td>هولندا</td>
-                        <td>بايلي</td>
-                        <td className="text-center">$56,142</td>
-                      </tr>
-                      <tr>
-                        <td>فيليب شانيه</td>
-                        <td>كوريا، جنوب</td>
-                        <td>اوفرلاند بارك</td>
-                        <td className="text-center">$38,735</td>
-                      </tr>
-                      <tr>
-                        <td>دوريس غرين</td>
-                        <td>مالاوي</td>
-                        <td>المنع</td>
-                        <td className="text-center">$63,542</td>
-                      </tr>
-                      <tr>
-                        <td>ميسون بورتر</td>
-                        <td>تشيلي</td>
-                        <td>غلوستر</td>
-                        <td className="text-center">$78,615</td>
-                      </tr>
-                      <tr>
-                        <td>جون بورتر</td>
-                        <td>البرتغال</td>
-                        <td>غلوستر</td>
-                        <td className="text-center">$98,615</td>
+                        <td>{schedule[2].courseName}</td>
+                        <td>3</td>
+
+
                       </tr>
                     </tbody>
                   </Table>
@@ -570,6 +225,6 @@ class Rtl extends React.Component {
       </>
     );
   }
+  return null;
 }
 
-export default Rtl;

@@ -31,7 +31,7 @@ import logo from "assets/img/react-logo.png";
 
 var ps;
 
-class Admin extends React.Component {
+class AdminT extends React.Component {
   constructor(props) {
     super(props);
     console.log(props.match.params)
@@ -79,7 +79,7 @@ class Admin extends React.Component {
   };
   getRoutes = routes => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/adminT") {
         console.log("admin.routes added");
         return (
           <Route
@@ -128,7 +128,7 @@ class Admin extends React.Component {
             />
             <Switch>
               {this.getRoutes(routes)}
-              <Redirect {...this.props.match.params} from="*" to="/admin/dashboard"/>
+              <Redirect {...this.props.match.params} from="*" to="/adminT/dashboard/"/>
             </Switch>
             {// we don't want the Footer to be rendered on map page
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
@@ -145,4 +145,4 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin;
+export default AdminT;
