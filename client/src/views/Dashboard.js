@@ -102,7 +102,7 @@ export default function Dashboard(props) {
                   <Row>
                     <Col sm="6">
                       <h5 className="card-category">Student Dashboard</h5>
-                      <h1>Welcome {user.firstName} {user.lastname}!</h1>
+                      <h1>Welcome Courtney Paasch!</h1>
                       <h4>Your Student ID: {user._id}</h4>
                     </Col>
                     <Col sm="6">
@@ -136,11 +136,11 @@ export default function Dashboard(props) {
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <h4>Professor:</h4>
-                  <h4>Days:</h4>
-                  <h4>Time:</h4>
-                  <h4>Location:</h4>
-                  <h4>Course Description:</h4>
+                  <h4>Professor: Dr. Smith</h4>
+                  <h4>Days: MWF</h4>
+                  <h4>Time: 10:00 am</h4>
+                  <h4>Location: Science Building 305</h4>
+                  <h4>Course Description: Intro to Biology is a 101 level science course.</h4>
                 </CardBody>
               </Card>
             </Col>
@@ -152,11 +152,11 @@ export default function Dashboard(props) {
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <h4>Professor:</h4>
-                  <h4>Days:</h4>
-                  <h4>Time:</h4>
-                  <h4>Location:</h4>
-                  <h4>Course Description:</h4>
+                  <h4>Professor: Dr. Peterson</h4>
+                  <h4>Days: MWF</h4>
+                  <h4>Time: 1:00 pm </h4>
+                  <h4>Location: Math Lab 188</h4>
+                  <h4>Course Description: Calulus 100 is a intro level course aimed at engineering majors.</h4>
                 </CardBody>
               </Card>
             </Col>
@@ -169,11 +169,11 @@ export default function Dashboard(props) {
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <h4>Professor:</h4>
-                  <h4>Days:</h4>
-                  <h4>Time:</h4>
-                  <h4>Location:</h4>
-                  <h4>Course Description:</h4>
+                  <h4>Professor: Dr. Lancer</h4>
+                  <h4>Days: TTh</h4>
+                  <h4>Time: 3:00 pm</h4>
+                  <h4>Location: Science Building 450</h4>
+                  <h4>Course Description: Lab is the lab requirement for Intro to Biology.</h4>
                 </CardBody>
               </Card>
             </Col>
@@ -197,22 +197,22 @@ export default function Dashboard(props) {
                     <tbody>
                       <tr>
                         <td>{schedule[0].courseName}</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td>Get to Know Biology</td>
+                        <td>http://amazon.com/get-to-know-biology</td>
 
 
                       </tr>
                       <tr>
                         <td>{schedule[1].courseName}</td>
-                        <td>2</td>
-                        <td>1</td>
+                        <td>Calculus for Engineers</td>
+                        <td>http://amazon.com/calculus-for-engineers</td>
 
 
                       </tr>
                       <tr>
                         <td>{schedule[2].courseName}</td>
-                        <td>3</td>
-                        <td>1</td>
+                        <td>Practical Biology</td>
+                        <td>http://amazon.com/practical-biology</td>
 
 
                       </tr>
@@ -238,19 +238,19 @@ export default function Dashboard(props) {
                     <tbody>
                       <tr>
                         <td>{schedule[0].courseName}</td>
-                        <td>1</td>
+                        <td>A-</td>
 
 
                       </tr>
                       <tr>
                         <td>{schedule[1].courseName}</td>
-                        <td>2</td>
+                        <td>C+</td>
 
 
                       </tr>
                       <tr>
                         <td>{schedule[2].courseName}</td>
-                        <td>3</td>
+                        <td>A</td>
 
 
                       </tr>
