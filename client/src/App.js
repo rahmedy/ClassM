@@ -5,6 +5,7 @@ import React from "react";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect  } from "react-router-dom";
 
+import AdminTLayout from "layouts/Admin/AdminT.js";
 import AdminLayout from "layouts/Admin/Admin.js";
 import RTLLayout from "layouts/RTL/RTL.js";
 import LoginLayout from "layouts/Login/Login.js"
@@ -52,8 +53,10 @@ class App extends React.Component {
                 <Route exact path="/sign" render={props => <SignupLayout {...props} />} />
                 <Route exact path="/log" render={props => <LoginLayout {...props} unsetAuthenticated={this.unsetAuthenticated} setAuthenticated = {this.setAuthenticated}/>} />
                 <Route exact path="/admin/dashboard/:id" render={props => this.state.token? <AdminLayout {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} />
-                <Route exact path="/rtl" render={props => <RTLLayout {...props} />} />
-                {/* <Redirect from="/admin" to="/admin/dashboard" /> */}
+                <Route exact path="/adminT/dashboardT/:id" render={props => this.state.token? <AdminTLayout {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} />
+                <Route exact path="/rtl"  render={props => this.state.token? <AdminLayout {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} />
+
+             
                 {/* <Route exact path="/admin/dashboard" render={props => this.state.token? <AdminDashboard {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} /> */}
                 </Switch>
             </Router>

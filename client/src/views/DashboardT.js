@@ -18,8 +18,7 @@
 // import React from "react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./style.css";
-import { BrowserRouter as Router, Route,Switch, Redirect} from 'react-router-dom';
+import "./style.css"
 import { Link } from 'react-router-dom';
 
 // reactstrap components
@@ -36,7 +35,7 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-export default function Dashboard(props) {
+export default function DashboardT(props) {
   console.log(props.match.params.id)
   const id = props.match.params.id
   // this is where the calls componet will go 
@@ -48,49 +47,23 @@ export default function Dashboard(props) {
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   console.log(id)
   useEffect(() => {
-    axios.get("http://localhost:5000/api/students/" + id).then(res => { setUser(res.data) })
+    axios.get("http://localhost:5000/api/teachers/" + id).then(res => { setUser(res.data) })
       .catch(err => console.log(err));
   }, [])
 
-  var scheduleId = [];
-
+  console.log(user);
 
   if (user.schedule) {
     schedule = user.schedule;
-    console.log(schedule);
 
-    for (var i = 0; i < schedule.length; i++) {
-      var curCourse = schedule[i]._id;
-      scheduleId.push(curCourse);
-    }
+      for(var i=0; i<schedule.length; i++) {
+        var curCourse = schedule[i];
+        console.log(curCourse);
 
-    // console.log(scheduleId);
-    // var allCourseData = scheduleId.map((course, index) => {
-    //   console.log(course);
-    //   axios({
-    //     method: "get",
-    //     url: "http://localhost:5000/api/class/get",
-    //     data: scheduleId[i]
-        
-    //   }).then(res => {
-    //     allCourseData.push(res);
-    //   })
-    // });
+       
+      }
 
-    // console.log(allCourseData);
 
-    
-    // for (var i = 0; i < scheduleId.length; i++) {
-    //   axios({
-    //     method: "get",
-    //     url: "http://localhost:5000/api/class/get",
-    //     data: scheduleId[i]
-        
-    //   }).then(res => {
-    //     allCourseData.push(res);
-    //   })
-    // }
-    // console.log(allCourseData);
 
     return (
       <>
@@ -101,16 +74,16 @@ export default function Dashboard(props) {
                 <CardHeader>
                   <Row>
                     <Col sm="6">
-                      <h5 className="card-category">Student Dashboard</h5>
+                      <h5 className="card-category">Teacher Dashboard</h5>
                       <h1>Welcome {user.firstName} {user.lastname}!</h1>
-                      <h4>Your Student ID: {user._id}</h4>
+                      <h4>Your Account ID: {user._id}</h4>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
                         className="btn-group-toggle addbutton"
                         data-toggle="buttons"
                       >
-                        <Link to = {"/studadd/" + id}>
+                        <Link to = {"/addclass/" + id}>
                         <Button>
                           Add a Class!
                         </Button>
@@ -136,11 +109,11 @@ export default function Dashboard(props) {
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <h4>Professor:</h4>
                   <h4>Days:</h4>
                   <h4>Time:</h4>
                   <h4>Location:</h4>
                   <h4>Course Description:</h4>
+                  <h4>Student List:</h4>
                 </CardBody>
               </Card>
             </Col>
@@ -152,11 +125,11 @@ export default function Dashboard(props) {
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <h4>Professor:</h4>
                   <h4>Days:</h4>
                   <h4>Time:</h4>
                   <h4>Location:</h4>
                   <h4>Course Description:</h4>
+                  <h4>Student List:</h4>
                 </CardBody>
               </Card>
             </Col>
@@ -169,11 +142,11 @@ export default function Dashboard(props) {
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <h4>Professor:</h4>
                   <h4>Days:</h4>
                   <h4>Time:</h4>
                   <h4>Location:</h4>
                   <h4>Course Description:</h4>
+                  <h4>Student List:</h4>
                 </CardBody>
               </Card>
             </Col>
@@ -181,16 +154,15 @@ export default function Dashboard(props) {
           <Row>
             <Col lg="6" md="12">
               <Card>
-                <CardHeader>
-                  <CardTitle tag="h4">Book List</CardTitle>
+              <CardHeader>
+                  <CardTitle tag="h4">All Students</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <Table className="tablesorter" responsive>
+                <Table className="tablesorter" responsive>
                     <thead className="text-primary">
                       <tr>
-                        <th>Textbook</th>
-                        <th>Author</th>
-                        <th>Link</th>
+                        <th>Student Name</th>
+                        <th>Email</th>
 
                       </tr>
                     </thead>
@@ -198,23 +170,14 @@ export default function Dashboard(props) {
                       <tr>
                         <td>{schedule[0].courseName}</td>
                         <td>1</td>
-                        <td>1</td>
-
-
                       </tr>
                       <tr>
                         <td>{schedule[1].courseName}</td>
                         <td>2</td>
-                        <td>1</td>
-
-
                       </tr>
                       <tr>
                         <td>{schedule[2].courseName}</td>
                         <td>3</td>
-                        <td>1</td>
-
-
                       </tr>
                     </tbody>
                   </Table>
@@ -263,7 +226,44 @@ export default function Dashboard(props) {
         </div>
       </>
     );
-    }
-  return null;
-  }
+  } else {
+      return (  
+    <>
+    <div className="studentDash">     
+      <Row>
+        <Col xs="12">
+          <Card>
+            <CardHeader>
+              <Row>
+                <Col sm="6">
+                  <h5 className="card-category">Teacher Dashboard</h5>
+                  <h1>Welcome {user.firstName} {user.lastname}!</h1>
+                  <h4>Your Account ID: {user._id}</h4>
+                </Col>
+                <Col sm="6">
+                  <ButtonGroup
+                    className="btn-group-toggle addbutton"
+                    data-toggle="buttons"
+                  >
+                    <Link to = {"/addclass/" + id}>
+                    <Button>
+                      Add a Class!
+                    </Button>
+                    </Link>
+                  </ButtonGroup>
+                </Col>
+              </Row>
+            </CardHeader>
+            <CardBody>
+              <div className="chart-area">
+
+              </div>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </div>   
+    </>
+    )}
+}
 
