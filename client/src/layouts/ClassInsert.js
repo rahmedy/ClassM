@@ -8,31 +8,19 @@ import { BrowserRouter as Router, Route,Switch, Redirect} from 'react-router-dom
 import Dashboard from "layouts/Admin/Admin";
 
 
-
 const Title = styled.h1.attrs({
-    className: 'h1 text-info',
-})`
-
-    
-    margin-top: 40px;
-
-`
+    className: 'h1',
+})``
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
     margin: 0 auto;
     width: 75%;
-    margin-bottom: 10px;
-
 `
 
-const Label = styled.label.attrs({
-    className: `text-success`,
-})`
-    
-    font-size: 20px;
-    margin-top: 20px;    
+const Label = styled.label`
+    margin: 5px;
 `
 
 const InputText = styled.input.attrs({
@@ -245,9 +233,7 @@ class ClassInsert extends Component {
         const { courseName, location, courseDescription, sections, textBooks } = this.state
         return (
             <Wrapper>
-                
-                
-                <Title>Create Your Classes</Title>
+                <Title>Create Classes</Title>
 
                 <Label>Course Name: </Label>
                 <InputText
@@ -293,8 +279,7 @@ class ClassInsert extends Component {
                 />
                 <Button onClick={this.handleSection}>
                     Add Section!
-                </Button> <br></br>
-
+                </Button>
                 <Label>Books </Label>
                 <InputText
                     type="text"
