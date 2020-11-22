@@ -17,6 +17,13 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
+  Teacher.find({email: req.params.id})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+})
+
+router.get('/:id', (req, res) => {
+  console.log("get the route", req);
   Teacher.findById(req.params.id)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
