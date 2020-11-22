@@ -53,12 +53,10 @@ class App extends React.Component {
                 <Route exact path="/sign" render={props => <SignupLayout {...props} />} />
                 <Route exact path="/log" render={props => <LoginLayout {...props} unsetAuthenticated={this.unsetAuthenticated} setAuthenticated = {this.setAuthenticated}/>} />
                 <Route exact path="/admin/dashboard/:id" render={props => this.state.token? <AdminLayout {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} />
-
-
                 <Route exact path="/adminT/dashboardT/:id" render={props => this.state.token? <AdminTLayout {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} />
                 <Route exact path="/rtl"  render={props => this.state.token? <AdminLayout {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} />
 
-
+             
                 {/* <Route exact path="/admin/dashboard" render={props => this.state.token? <AdminDashboard {...props} />: <Redirect to= {{pathname: "/log",state:{from: props.location}}}  />} /> */}
                 </Switch>
             </Router>
