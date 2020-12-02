@@ -30,5 +30,5 @@ Rayan Ahmedy, Matthew Stalzer, Courtney Paasch, Jake Battaglia, Hailey Nicole
 ## Contact 
 rayanahmedy1999@gmail.com
 ## GitHub account: 
-https://github.com/@rahmedy
+https://github.com/@rahmedy ,
 https://github.com/VeigarMain
