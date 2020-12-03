@@ -4,6 +4,7 @@
     padding: 15px;
     margin: auto;
     text-align: center;
+    /* margin-top: 90px; */
 
 }
 .m-circle{
@@ -19,7 +20,7 @@
 }
 
 .wel{
-    margin-top: 150px;
+    margin-top: 10px;
     margin-left: 2.5px;
     color: snow;
 }
