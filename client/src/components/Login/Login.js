@@ -1,7 +1,8 @@
 // Copy and paste your work, or start typing.
 
 import React from "react";
-import 'assets/css/log.css'
+import '../../assets/css/log.css'
+
 import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from "axios";
